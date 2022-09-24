@@ -11,19 +11,19 @@ output: github_document
 library(tidyverse) 
 ```
 
-* load the package "palmerpenguins" which contains the dataset "penguins"
-* drop all of NA form "penguins"
+* Loading the package "palmerpenguins" which contains the dataset "penguins".
+* Dropping all of NA form "penguins".
 
 ```{r}
 data("penguins", package = "palmerpenguins")  
 penguins_drop = drop_na(penguins) 
 ```
-* short description of the penguins dataset
+* Short description of the penguins dataset
   * This dataset has eight variables, which are species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year. 
   * The dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
-  * the mean flipper length is `r mean(penguins_drop$flipper_length_mm)`
+  * The mean flipper length is `r mean(penguins_drop$flipper_length_mm)`
 
-* make a scatterplot and save the scatterplot as a pdf
+* I make a scatterplot and save the scatterplot as a pdf.
 
 ```{r}
 ggplot(penguins_drop,aes(x = bill_length_mm,y = flipper_length_mm,color=species)) + geom_point()
@@ -32,7 +32,7 @@ ggsave('scatterplot of problem1.pdf')
 
 ## Problem 2
 
-* create a data frame composed of a random sample followed as normal distribution, a logical vector, a character vector, and a factor vector. 
+* I Create a data frame composed of a random sample followed as normal distribution, a logical vector, a character vector, and a factor vector. 
 ```{r}
 problem2_sample = tibble(
   norm_samp = rnorm(10),
@@ -42,4 +42,18 @@ problem2_sample = tibble(
 )
 ```
 
+* I Take the mean of each variable of the data frame.
+
+```{r}
+mean_samp_norm = mean(pull(problem2_sample, norm_samp))
+mean_samp_logical = mean(pull(problem2_sample, norm_samp_logical))
+mean_vec_char = mean(pull(problem2_sample, vec_char))
+mean_vec_factor = mean(pull(problem2_sample, vec_factor))
+mean_samp_norm
+mean_samp_logical
+mean_vec_char
+mean_vec_factor
+```
+
+* By taking the mean of each variable, we can see the random sample followed as normal distribution and the logical vector can work, but the character vector and the factor vector cannot work. 
 
